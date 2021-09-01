@@ -1,8 +1,14 @@
+import { observer } from 'mobx-react-lite';
 function TodoView({ todo }) {
   return (
-    <li>
+    <li className={todo.completed ? 'completed' : ''}>
       <div className="view">
-        <input className="toggle" type="checkbox" />
+        <input
+          checkbox={todo.completed}
+          onChange={() => todo.toggle()}
+          className="toggle"
+          type="checkbox"
+        />
         <label>{todo.title}</label>
         <button className="destroy" />
       </div>
@@ -11,4 +17,4 @@ function TodoView({ todo }) {
   );
 }
 
-export default TodoView;
+export default observer(TodoView);

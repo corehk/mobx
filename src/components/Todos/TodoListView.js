@@ -2,11 +2,13 @@ import TodoHeader from './TodoHeader';
 import TodoFooter from './TodoFooter';
 import TodoView from './TodoView';
 import { observer } from 'mobx-react-lite';
+import { useTodolistStore } from '../../stores/TodoStore/TodoListStore';
 
-function TodoListView({ todoListStore }) {
+function TodoListView() {
+  const todoListStore = useTodolistStore();
   return (
     <section className="todoapp">
-      <TodoHeader createTodo={(title) => todoListStore.createTodo(title)} />
+      <TodoHeader />
       <section className="main">
         <input className="toggle-all" type="checkbox" />
         <ul className="todo-list">

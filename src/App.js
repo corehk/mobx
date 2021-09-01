@@ -4,7 +4,9 @@ import CounterStore from './stores/CounterStore/CounterStore';
 import TodoListView from './components/Todos/TodoListView';
 import './index.css';
 
-import TodoListStore from './stores/TodoStore/TodoListStore';
+import TodoListStore, {
+  TodolistStoreProvider,
+} from './stores/TodoStore/TodoListStore';
 import TodoViewStore from './stores/TodoStore/TodoViewStore';
 
 const todoListStore = new TodoListStore([
@@ -15,10 +17,12 @@ const todoListStore = new TodoListStore([
 const counterStore = new CounterStore();
 function App() {
   return (
-    <div className="App">
-      <Counter counterStore={counterStore} />
-      <TodoListView todoListStore={todoListStore} />
-    </div>
+    <TodolistStoreProvider store={todoListStore}>
+      <div className="App">
+        <Counter counterStore={counterStore} />
+        <TodoListView />
+      </div>
+    </TodolistStoreProvider>
   );
 }
 
